@@ -8,7 +8,5 @@
 import Foundation
 
 extension Habit {
-    var currentStreak: Int {
-        let calendar = Calendar.current
-    }
+    
 }

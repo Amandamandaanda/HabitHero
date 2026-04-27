@@ -10,13 +10,15 @@ import Foundation
 
 @Model
 class Habit {
-    var id: UUID
+    var id: UUID = UUID()
+    var created: Date
     var streak: [Date] = []
     var name: String
 
     
-    init(name: String) {
+    init(name: String, date: Date) {
         self.name = name
+        self.created = date
     }
     
 }
