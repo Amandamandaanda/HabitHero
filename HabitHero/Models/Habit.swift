@@ -12,7 +12,7 @@ import Foundation
 class Habit {
     var id: UUID = UUID()
     var created: Date
-    var streak: [Date] = []
+    var completedDays: [Date] = []
     var name: String
 
     

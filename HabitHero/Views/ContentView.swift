@@ -32,14 +32,8 @@ struct ContentView: View {
                 
                 List {
                     ForEach(habits) {habit in
-                        Text("\(habit.name)")
-                        // TextField("Titel", text: Binding(
-                        //     get: { habit.name },
-                        //     set: { newValue in
-                        //         habit.name = newValue
-                        //         try? modelContext.save()
-                        //     }
-                        // ))
+                        HabitRow(habit: habit, viewModel: viewModel, context: modelContext)
+
                     }
                             .onDelete { offsets in viewModel.deleteHabit(at: offsets, habits: habits, context: modelContext)
                             }
