@@ -9,4 +9,13 @@ import Foundation
 import SwiftData
 
 @Observable
-class HabitViewModel {}
+class HabitViewModel {
+    
+     func deleteHabit(at offsets: IndexSet, habits: [Habit], context: ModelContext) {
+        for index in offsets {
+            let habit = habits[index]
+            context.delete(habit)
+        }
+        try? context.save()
+    }
+}

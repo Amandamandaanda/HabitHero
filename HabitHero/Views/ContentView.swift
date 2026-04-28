@@ -19,40 +19,49 @@ struct ContentView: View {
     @State private var habitName = ""
     @State private var showDeleted = false
      @State private var habitToDelete: Habit?
+    @State private var showAddHabit = false
+    @State var viewModel = HabitViewModel()
     
     var body: some View {
 
        NavigationStack {
             VStack {
                 Text("Antal habits: \(habits.count)")
-                HStack {
-                    TextField("New habit....", text: $habitName)
-                        .textFieldStyle(.roundedBorder)
-                    
-                    Button("Lägg till") {
-                        let habit = Habit(name: habitName, date: Date())
-                        modelContext.insert(habit)
-                        habitName = ""
-                    }
-                    .disabled(habitName.trimmingCharacters(in: .whitespaces).isEmpty)
-                }
+
                 .padding()
                 
                 List {
                     ForEach(habits) {habit in
-                            Text("\(habit.name)")
-                            // TextField("Titel", text: Binding(
-                            //     get: { habit.name },
-                            //     set: { newValue in
-                            //         habit.name = newValue
-                            //         try? modelContext.save()
-                            //     }
-                            // ))
-                        }
+                        Text("\(habit.name)")
+                        // TextField("Titel", text: Binding(
+                        //     get: { habit.name },
+                        //     set: { newValue in
+                        //         habit.name = newValue
+                        //         try? modelContext.save()
+                        //     }
+                        // ))
+                    }
+                            .onDelete { offsets in viewModel.deleteHabit(at: offsets, habits: habits, context: modelContext)
+                            }
                     }
                 }
                 .navigationTitle("Habits")
                 
+                .toolbar {
+                    Button {
+                        showAddHabit = true
+                    } label: {
+                        Image(systemName: "plus")
+                    }
+                }
+                .sheet(isPresented: $showAddHabit) {
+                    AddHabitView()
+                }
+                }
+                
+             
+                
+               
                 .alert("Är du säker på att du vill ta bort?", isPresented: $showDeleted) {
                     Button("Avbryt", role: .cancel) {}
                     
@@ -66,7 +75,7 @@ struct ContentView: View {
                 
             }
         }
-    }
+    
 
 
 #Preview {
