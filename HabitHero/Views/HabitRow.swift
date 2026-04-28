@@ -27,10 +27,13 @@ struct HabitRow: View {
             
             Spacer()
             
-            Text("Streak \(habit.currentStreak)")
+            Text("Streak \(habit.completedDays.count)")
             //    .font(.subheadline)
                 .foregroundStyle(.secondary)
             
+        }
+        .onTapGesture {
+            viewModel.toggleToday(for: habit, context: context)
         }
                 
         }

@@ -27,7 +27,7 @@ class HabitViewModel {
         do {
             try context.save()
         } catch {
-            errorMessage = "Kunde inte spara: \(error.localizedDescription)"
+            errorMessage = "Failed to save: \(error.localizedDescription)"
         }
     }
     

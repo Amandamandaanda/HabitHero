@@ -15,10 +15,6 @@ struct ContentView: View {
 
     @Environment(\.modelContext)
     private var modelContext
-
-    @State private var habitName = ""
-    @State private var showDeleted = false
-     @State private var habitToDelete: Habit?
     @State private var showAddHabit = false
     @State var viewModel = HabitViewModel()
     
@@ -53,21 +49,10 @@ struct ContentView: View {
                 }
                 }
                 
-             
-                
-               
-                .alert("Är du säker på att du vill ta bort?", isPresented: $showDeleted) {
-                    Button("Avbryt", role: .cancel) {}
-                    
-                    Button("Tabort", role: .destructive) {
-                        if let habit = habitToDelete {
-                            modelContext.delete(habit)
-                            try? modelContext.save()
-                        }
-                    }
+            
                 }
                 
-            }
+            
         }
     
 
