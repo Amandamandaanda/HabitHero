@@ -12,22 +12,29 @@ struct AddHabitView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
     
-    @State private var newHabitName: String = ""
+    @State private var viewModel = AddHabitViewModel()
     
     var body: some View {
         NavigationStack {
             VStack {
-                TextField("New habit...", text: $newHabitName)
+                TextField("New habit...", text: $viewModel.habitName)
                     .textFieldStyle(.roundedBorder)
                     .padding()
                 
-                Button("Save") {
-                    let habit = Habit(name: newHabitName, date: Date())
-                    modelContext.insert(habit)
-                    
-                    dismiss()
+                if let error = viewModel.errorMessage {
+                    Text(error)
+                        .foregroundStyle(.red)
+                        .font(.caption)
                 }
-                .disabled(newHabitName.trimmingCharacters(in: .whitespaces).isEmpty)
+                
+                Button("Save") {
+                    viewModel.saveHabit(context: modelContext)
+                    
+                    if viewModel.errorMessage == nil {
+                        
+                        dismiss()
+                    }
+                }
                 
                 Spacer()
             }

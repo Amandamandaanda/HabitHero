@@ -11,14 +11,12 @@ import Foundation
 @Model
 class Habit {
     var id: UUID = UUID()
-    var created: Date
     var completedDays: [Date] = []
     var name: String
 
     
-    init(name: String, date: Date) {
+    init(name: String) {
         self.name = name
-        self.created = date
     }
     
 }

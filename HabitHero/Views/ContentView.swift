@@ -10,7 +10,7 @@ import SwiftData
 
 struct ContentView: View {
 
-    @Query(sort: \Habit.created, order: .reverse)
+    @Query(sort: \Habit.name, order: .reverse)
     private var habits: [Habit]
 
     @Environment(\.modelContext)
