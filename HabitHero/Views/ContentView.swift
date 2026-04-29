@@ -34,6 +34,9 @@ struct ContentView: View {
                     Text("\(habits.count) habits")
                         .foregroundStyle(Color.secondaryTextColor)
                     
+                    WeekView(habits: habits, viewModel: viewModel)
+                        .padding(.vertical, 8)
+                    
                     
                     List {
                         ForEach(habits) {habit in

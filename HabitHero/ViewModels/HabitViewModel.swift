@@ -12,6 +12,14 @@ import SwiftData
 class HabitViewModel {
     
     var errorMessage: String?
+    
+    func completedHabits(for date: Date, habits: [Habit]) -> Int {
+       return habits.filter{ habit in
+            habit.completedDays.contains{
+                Calendar.current.isDate($0, inSameDayAs: date)
+            }
+        }.count
+    }
 
     func toggleToday(for habit: Habit, context: ModelContext) {
         let calendar = Calendar.current
