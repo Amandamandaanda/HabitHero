@@ -25,14 +25,20 @@ struct ContentView: View {
                 Color.generalBackground.ignoresSafeArea()
                 
                 VStack(spacing: 16) {
-                    Text("My habits")
+                    Text("Habit Hero")
                         .font(.largeTitle)
                         .foregroundStyle(Color.primaryTextColor)
                         .bold()
                         .padding(.top)
                     
-                    Text("\(habits.count) habits")
+                    Text("My habits: \(habits.count)")
                         .foregroundStyle(Color.secondaryTextColor)
+                    
+                    if let error = viewModel.errorMessage{
+                        Text(error)
+                            .foregroundStyle(.red)
+                            .font(.caption)
+                    }
                     
                     WeekView(habits: habits, viewModel: viewModel)
                         .padding(.vertical, 8)

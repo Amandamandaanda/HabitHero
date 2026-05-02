@@ -11,18 +11,30 @@ struct WeekView: View {
     
     let habits: [Habit]
     let viewModel: HabitViewModel
+    private let calendar = Calendar.current
     
     var body: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 12) {
-                ForEach(week, id: \.self) { date in
-                    WeekDayView(date: date, isToday: Calendar.current.isDateInToday(date), completedCount: viewModel.completedHabits(for: date, habits: habits))
+        ScrollViewReader { proxy in
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 12) {
+                    ForEach(week, id: \.self) { date in
+                        WeekDayView(date: date, isToday: Calendar.current.isDateInToday(date), completedCount: viewModel.completedHabits(for: date, habits: habits)
+                        )
+                        .id(date)
+                    }
+                }
+                
+                .padding(.horizontal)
+                
+            }
+            .onAppear {
+                if let today = week.first(where: { calendar.isDateInToday($0) }) {
+                    proxy.scrollTo(today, anchor: .center)
                 }
             }
         }
-        .padding(.horizontal)
-        
     }
+
     private var week: [Date] {
         let calendar = Calendar.current
         

@@ -27,7 +27,7 @@ class AddHabitViewModel {
             try context.save()
             errorMessage = nil
         } catch {
-            errorMessage = "Failed to save"
+            errorMessage = "Failed to save: \(error.localizedDescription)"
         }
     }
     

@@ -22,6 +22,7 @@ class HabitViewModel {
     }
 
     func toggleToday(for habit: Habit, context: ModelContext) {
+        errorMessage = nil
         let calendar = Calendar.current
 
         if let todayIndex = habit.completedDays.firstIndex(where: {
@@ -40,12 +41,20 @@ class HabitViewModel {
     }
     
      func deleteHabit(at offsets: IndexSet, habits: [Habit], context: ModelContext) {
+         errorMessage = nil
+         
         for index in offsets {
             let habit = habits[index]
             context.delete(habit)
         }
-        try? context.save()
+         do {
+            try context.save()
+                
+            } catch {
+                errorMessage = "Failed to delete: \(error.localizedDescription)"
+            }
+        }
     }
     
     
-}
+
