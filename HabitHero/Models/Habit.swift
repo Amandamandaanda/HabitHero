@@ -13,10 +13,8 @@ class Habit {
     var id: UUID = UUID()
     var completedDays: [Date] = []
     var name: String
-
     
     init(name: String) {
         self.name = name
     }
-    
 }

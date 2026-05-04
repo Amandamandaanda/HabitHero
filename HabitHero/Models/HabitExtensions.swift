@@ -8,7 +8,6 @@
 import Foundation
 
 extension Habit {
-    
         
         var isCompletedToday: Bool {
             let calendar = Calendar.current

@@ -23,10 +23,9 @@ struct WeekView: View {
                         .id(date)
                     }
                 }
-                
                 .padding(.horizontal)
-                
             }
+            
             .onAppear {
                 if let today = week.first(where: { calendar.isDateInToday($0) }) {
                     proxy.scrollTo(today, anchor: .center)
@@ -41,5 +40,4 @@ struct WeekView: View {
         let startOfWeek = calendar.dateInterval(of: .weekOfYear, for: Date())?.start ?? Date()
         return (0..<7).compactMap { calendar.date(byAdding: .day, value: $0, to: startOfWeek)}
     }
-
 }

@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct AddHabitView: View {
+    
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
     
@@ -29,6 +30,7 @@ struct AddHabitView: View {
                             .textFieldStyle(.plain)
                             .foregroundStyle(Color.primaryTextColor)
                     }
+                    
                     .padding()
                     .background(Color.listCardBackground)
                     .clipShape(RoundedRectangle(cornerRadius: 14))
@@ -59,7 +61,6 @@ struct AddHabitView: View {
                             .foregroundStyle(.white)
                             .clipShape(RoundedRectangle(cornerRadius: 14))
                             .shadow(color: Color.accentColor.opacity(0.4), radius: 6)
-                        
                     }
                     .padding(.horizontal)
                     Spacer()
@@ -70,12 +71,10 @@ struct AddHabitView: View {
                     ToolbarItem(placement: .cancellationAction) {
                         Button ("Cancel", role: .cancel) {
                             dismiss()
-                            
                         }
                     }
                 }
             }
-            
         }
     }
 }

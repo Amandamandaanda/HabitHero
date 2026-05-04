@@ -10,16 +10,19 @@ import SwiftData
 
 @Observable
 class AddHabitViewModel {
+    
     var habitName: String = ""
     var errorMessage: String?
     
     func saveHabit(context: ModelContext){
+        
         let trimmed = habitName.trimmingCharacters(in: .whitespaces)
         
         guard !trimmed.isEmpty else {
             errorMessage = "You have to name a habit"
             return
         }
+        
         let habit = Habit(name: trimmed)
         context.insert(habit)
         

@@ -17,18 +17,15 @@ struct HabitRow: View {
     
     var body: some View {
         HStack(spacing: 14) {
-            
             Image(systemName: habit.isCompletedToday ? "checkmark.circle.fill" : "circle")
                 .foregroundStyle(habit.isCompletedToday ? Color.accentColor : Color.secondaryTextColor)
                 .font(.title3)
-            
             
             VStack(alignment: .leading, spacing: 4) {
                 Text(habit.name)
                     .font(.headline)
                     .foregroundStyle(Color.primaryTextColor)
                     .lineLimit(1)
-                
                 
                 Text("Streak \(habit.completedDays.count)")
                     .font(.caption)
@@ -43,7 +40,6 @@ struct HabitRow: View {
             }
             .font(.caption)
             .foregroundStyle(Color.accentColor)
-            
         }
         .padding(.horizontal, 12)
         .padding(.vertical, 10)
@@ -55,7 +51,6 @@ struct HabitRow: View {
         .onTapGesture {
             viewModel.toggleToday(for: habit, context: context)
         }
-                
-        }
     }
+}
 

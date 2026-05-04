@@ -22,12 +22,13 @@ class HabitViewModel {
     }
 
     func toggleToday(for habit: Habit, context: ModelContext) {
+        
         errorMessage = nil
+        
         let calendar = Calendar.current
 
         if let todayIndex = habit.completedDays.firstIndex(where: {
-            calendar.isDateInToday($0)
-        }) {
+            calendar.isDateInToday($0)}) {
             habit.completedDays.remove(at: todayIndex)
         } else {
             habit.completedDays.append(Date())
@@ -41,6 +42,7 @@ class HabitViewModel {
     }
     
      func deleteHabit(at offsets: IndexSet, habits: [Habit], context: ModelContext) {
+         
          errorMessage = nil
          
         for index in offsets {
