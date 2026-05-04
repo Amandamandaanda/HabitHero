@@ -10,16 +10,11 @@ import Foundation
 
 @Model
 class Habit {
-    var ID: UUID
-    var streak: Int
+    var id: UUID = UUID()
+    var completedDays: [Date] = []
     var name: String
-    var lastPerformed: Date
     
-    init(ID: UUID, streak: Int, name: String, lastPerformed: Date) {
-        self.ID = ID
-        self.streak = streak
+    init(name: String) {
         self.name = name
-        self.lastPerformed = lastPerformed
     }
-    
 }
