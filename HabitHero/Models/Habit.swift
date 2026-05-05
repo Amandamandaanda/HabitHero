@@ -10,7 +10,6 @@ import Foundation
 
 @Model
 class Habit {
-    var id: UUID = UUID()
     var completedDays: [Date] = []
     var name: String
     
